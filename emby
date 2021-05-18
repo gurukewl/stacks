@@ -1,0 +1,19 @@
+---
+version: "2.1"
+services:
+  emby:
+    image: ghcr.io/linuxserver/emby
+    container_name: emby
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=Asia/Kolkata
+    volumes:
+      - /srv/dev-disk-by-uuid-efb37695-1244-42bd-8337-d19244969ad6/config/emby:/config
+      - /srv/dev-disk-by-uuid-38d684d9-3d16-49e7-b125-bdb57d3de18f/Shows:/data/tvshows
+      - /srv/dev-disk-by-uuid-38d684d9-3d16-49e7-b125-bdb57d3de18f/Movie:/data/movies
+    ports:
+      - 8096:8096
+    devices:
+      - /dev/dri:/dev/dri #optional
+    restart: unless-stopped
