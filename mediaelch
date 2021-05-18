@@ -1,0 +1,18 @@
+---
+version: "2.1"
+services:
+  tinymediamanager:
+    image: rveillerot/mediaelch
+    container_name: mediaelch
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=Asia/Kolkata
+    volumes:
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/config/mediaelch:/config
+      - /srv/dev-disk-by-uuid-9e283a6a-08c0-4e3a-8254-df0c15793928/TVShows:/home/mediaelch/shows
+      - /srv/dev-disk-by-uuid-9e283a6a-08c0-4e3a-8254-df0c15793928/Movies:/home/mediaelch/movies
+    ports:
+      - 5800:5800
+      - 5900:5900
+    restart: unless-stopped
