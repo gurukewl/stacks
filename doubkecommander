@@ -1,0 +1,16 @@
+---
+version: "2.1"
+services:
+  doublecommander:
+    image: ghcr.io/linuxserver/doublecommander
+    container_name: doublecommander
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=Asia/Kolkata
+    volumes:
+      - /srv/dev-disk-by-uuid-efb37695-1244-42bd-8337-d19244969ad6/config/doublecommander:/config
+      - /:/data
+    ports:
+      - 3000:3000
+    restart: unless-stopped
