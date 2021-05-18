@@ -1,0 +1,16 @@
+---
+version: "2.1"
+services:
+  deluge:
+    image: ghcr.io/linuxserver/deluge
+    container_name: deluge
+    network_mode: host
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=sia/Kolkata
+      - DELUGE_LOGLEVEL=error #optional
+    volumes:
+      - /srv/dev-disk-by-uuid-efb37695-1244-42bd-8337-d19244969ad6/config/deluge:/config
+      - /srv/dev-disk-by-uuid-efb37695-1244-42bd-8337-d19244969ad6/Torrent:/downloads
+    restart: unless-stopped
