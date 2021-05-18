@@ -1,0 +1,25 @@
+---
+version: "2.1"
+services:
+  docker-windscribe:
+    image: wiorca/docker-windscribe
+    container_name: docker-windscribe
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=Asia/Kolkata
+      - WINDSCRIBE_USERNAME=gurukool
+      - WINDSCRIBE_PASSWORD=K0lkata@1
+      - WINDSCRIBE_PROTOCOL=stealth
+      - WINDSCRIBE_PORT=80
+      - WINDSCRIBE_LOCATION=US
+      - WINDSCRIBE_LANBYPASS=on
+      - WINDSCRIBE_FIREWALL=on
+      - VPN_PORT=9999
+    volumes:
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/config/vpn:/config
+    dns:
+      - 8.8.8.8
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
