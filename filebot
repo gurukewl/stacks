@@ -1,0 +1,16 @@
+---
+version: "2.1"
+services:
+  filebot:
+    image: arranhs/filebot
+    container_name: filebot
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=Asia/Kolkata
+    volumes:
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/config/filebot:/config
+      - /srv:/storage
+    ports:
+      - 8888:8080
+    restart: unless-stopped
