@@ -1,0 +1,11 @@
+---
+version: "2"
+services:
+  dashmachine:
+    image: rmountjoy/dashmachine:latest
+    container_name: dashmachine
+    volumes:
+      - /srv/dev-disk-by-uuid-efb37695-1244-42bd-8337-d19244969ad6/config/dashMachine:/dashmachine/dashmachine/user_data
+    ports:
+      - 5000:5000
+    restart: unless-stopped
