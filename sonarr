@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  sonarr:
+    image: ghcr.io/linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=Asia/Kolkata
+    volumes:
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/config/sonarr:/config
+      - /srv/dev-disk-by-uuid-9e283a6a-08c0-4e3a-8254-df0c15793928/TVShows:/tv
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/Torrent/Completed:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
