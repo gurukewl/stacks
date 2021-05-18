@@ -1,0 +1,17 @@
+version: '3'
+services:
+  handbrake:
+    image: jlesage/handbrake
+    ports:
+      - 5888:5800
+    group_add:
+      - 107
+    volumes:
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/config:/config:rw
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/Downloads:/storage:ro
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/HandBrake/Watch:/watch:rw
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/HandBrake/Output:/output:rw
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/dri/card0:/dev/dri/card0
+    restart: unless-stopped
