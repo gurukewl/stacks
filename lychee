@@ -1,0 +1,36 @@
+version: "3"
+services:
+  mariadb:
+    image: ghcr.io/linuxserver/mariadb:latest
+    container_name: lychee_mariadb
+    restart: always
+    volumes:
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/config/lychee/mariadb/data:/config
+    environment:
+      - MYSQL_ROOT_PASSWORD=lychee
+      - MYSQL_DATABASE=lychee
+      - MYSQL_USER=lychee
+      - MYSQL_PASSWORD=lychee
+      - PGID=998
+      - PUID=100
+      - TZ=Asia/Kolkata
+  lychee:
+    image: ghcr.io/linuxserver/lychee:latest
+    container_name: lychee
+    restart: always
+    depends_on:
+      - mariadb
+    volumes:
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/config/lychee:/config
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/Pictures:/pictures
+    environment:
+      - DB_HOST=mariadb
+      - DB_USER=lychee
+      - DB_PASS=lychee
+      - DB_NAME=lychee
+      - DB_PORT=3306
+      - PGID=998
+      - PUID=100
+      - TZ=Asia/Kolkata
+    ports:
+      - 8800:80
