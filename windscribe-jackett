@@ -1,0 +1,28 @@
+---
+version: "2.1"
+services:
+  docker-windscribe-jackett:
+    image: wiorca/docker-windscribe-jackett
+    container_name: docker-windscribe-jackett
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=Asia/Kolkata
+      - WINDSCRIBE_USERNAME=gurukool
+      - WINDSCRIBE_PASSWORD=K0lkata@1
+      - WINDSCRIBE_PROTOCOL=stealth
+      - WINDSCRIBE_PORT=80
+      - WINDSCRIBE_PORT_FORWARD=9999
+      - WINDSCRIBE_LOCATION=US
+      - WINDSCRIBE_LANBYPASS=on
+      - WINDSCRIBE_FIREWALL=off
+    volumes:
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/config/windscribe-jackett:/config
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/Torrent/Completed:/data
+    ports:
+      - 9117:9117
+    dns:
+      - 8.8.8.8
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
