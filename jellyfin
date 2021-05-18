@@ -1,0 +1,23 @@
+---
+version: "2.1"
+services:
+  jellyfin:
+    image: ghcr.io/linuxserver/jellyfin
+    container_name: jellyfin
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=Asia/Kolkata
+      - DOCKER_MODS=linuxserver/mods:jellyfin-opencl-intel
+    group_add:
+      - 107
+    volumes:
+      - /srv/dev-disk-by-uuid-efb37695-1244-42bd-8337-d19244969ad6/config/jellyfin:/config
+      - /srv/dev-disk-by-uuid-38d684d9-3d16-49e7-b125-bdb57d3de18f/Shows:/data/tvshows
+      - /srv/dev-disk-by-uuid-38d684d9-3d16-49e7-b125-bdb57d3de18f/Movie:/data/movies
+    ports:
+      - 8096:8096
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/dri/card0:/dev/dri/card0
+    restart: unless-stopped
