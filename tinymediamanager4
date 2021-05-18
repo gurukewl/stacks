@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  tinymediamanager:
+    image: romancin/tinymediamanager:latest
+    container_name: tinymediamanager
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=Asia/Kolkata
+    volumes:
+      - /srv/dev-disk-by-uuid-868cfc7e-4e4a-4b1c-979c-417882dd56b5/config/tinymediamanager4:/config
+      - /srv:/media
+    ports:
+      - 5800:5800
+      - 5900:5900
+    restart: unless-stopped
