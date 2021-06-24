@@ -1,0 +1,44 @@
+---
+version: "2.1"
+
+volumes:
+  nextcloud:
+  db:
+
+services:
+  nextcloud:
+    image: ghcr.io/linuxserver/nextcloud
+    container_name: nextcloud
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=Asia/Kolkata
+      - MYSQL_PASSWORD=mariadb
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=mariadb
+    volumes:
+      - /srv/dev-disk-by-uuid-1cd3ef8c-2b31-4863-a96f-8a85bd7fefc2/config/nextcloud:/config
+      - /srv/dev-disk-by-uuid-1cd3ef8c-2b31-4863-a96f-8a85bd7fefc2/Nextcloud/data:/data
+    links:
+      - mariadb
+    ports:
+      - 8080:80
+      - 4433:443
+    restart: unless-stopped
+  mariadb:
+    image: ghcr.io/linuxserver/mariadb
+    container_name: mariadb
+    environment:
+      - PUID=998 
+      - PGID=100 
+      - TZ=Asia/Kolkata
+      - MYSQL_ROOT_PASSWORD=mariadb
+      - MYSQL_PASSWORD=mariadb
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+    volumes:
+      - /srv/dev-disk-by-uuid-1cd3ef8c-2b31-4863-a96f-8a85bd7fefc2/config/nextcloud/nextclouddb:/config
+    ports:
+      - 3306:3306
+    restart: unless-stopped
