@@ -1,0 +1,20 @@
+---
+version: "2.1"
+services:
+  ubooquity:
+    image: ghcr.io/linuxserver/ubooquity
+    container_name: ubooquity
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=Asia/Kolkata
+      - MAXMEM=2048
+    volumes:
+      - /srv/dev-disk-by-uuid-1cd3ef8c-2b31-4863-a96f-8a85bd7fefc2/config:/config
+      - /srv/dev-disk-by-uuid-38d684d9-3d16-49e7-b125-bdb57d3de18f/Books/E-Books:/books
+      - /srv/dev-disk-by-uuid-38d684d9-3d16-49e7-b125-bdb57d3de18f/Books/Comics:/comics
+      - /srv/dev-disk-by-uuid-38d684d9-3d16-49e7-b125-bdb57d3de18f/Books/Documents:/files
+    ports:
+      - 2202:2202
+      - 2203:2203
+    restart: unless-stopped
