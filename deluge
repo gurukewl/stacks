@@ -8,7 +8,7 @@ services:
     environment:
       - PUID=998
       - PGID=100
-      - TZ=sia/Kolkata
+      - TZ=Asia/Kolkata
       - DELUGE_LOGLEVEL=error #optional
     volumes:
       - /srv/dev-disk-by-uuid-efb37695-1244-42bd-8337-d19244969ad6/config/deluge:/config
