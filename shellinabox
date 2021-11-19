@@ -1,0 +1,16 @@
+---
+version: "2"
+services:
+  dashmachine:
+    image: sspreitzer/shellinabox:latest
+    container_name: shellinabox
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+      - SIAB_USER=admin
+      - SIAB_PASSWORD=1qaz2wsx
+      - SIAB_SUDO=true
+    ports:
+      - 4200:4200
+    restart: unless-stopped
