@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+    kavita:
+        image: kizaing/kavita:latest
+        environment:
+            - PUID=998
+            - PGID=100
+            - TZ=Asia/Kolkata
+        volumes:
+            - /srv/dev-disk-by-uuid-7e5a19b2-5cf0-4c9a-9daa-26eb0592ffe4/Media/Ebooks:/manga
+            - /srv/dev-disk-by-uuid-85a7d130-1d7c-47eb-a543-a29f75142d64/config/kavita:/kavita/config
+        ports:
+            - "5500:5000"
+        restart: unless-stopped
