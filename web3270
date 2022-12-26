@@ -1,0 +1,15 @@
+---
+version: "2.1"
+services:
+  web3270:
+    image: mainframed767/web3270
+    container_name: web3270
+    environment:
+      - PUID=998
+      - PGID=100
+      - TZ=Asia/Kolkata
+    volumes:
+      - /config/web3270:/config
+    ports:
+      - 4443:443
+    restart: unless-stopped
