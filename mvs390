@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   mvs390:
-    image: gurukool/tk4-mvs
+    image: gurukool/tk4-mvs:1.0.0
     container_name: tk4-mvs
     environment:
       - PUID=998
