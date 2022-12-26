@@ -1,7 +1,7 @@
 ---
 version: "2.1"
 services:
-  code-server:
+  mvs390:
     image: gurukool/tk4-mvs
     container_name: tk4-mvs
     environment:
