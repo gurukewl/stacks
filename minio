@@ -1,0 +1,15 @@
+version: '2'
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9099:9099"
+    environment:
+      MINIO_ROOT_USER: administrator
+      MINIO_ROOT_PASSWORD: K0lkata@1
+    volumes:
+      - /mnt/data/minio_data:/data
+    command: server --console-address ":9099" /data
+    restart: unless-stopped
